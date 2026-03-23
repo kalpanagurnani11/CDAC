@@ -1,10 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Index from './web/index'
+import demowithoutcallback from './demowithoutcallback';
+import Demowithoutcallback from './demowithoutcallback';
+import Color from './assignment_extra';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Index> </Index>
+      <Demowithoutcallback></Demowithoutcallback>
+      <Color></Color>
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -17,7 +23,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
     </div>
   );
 }
