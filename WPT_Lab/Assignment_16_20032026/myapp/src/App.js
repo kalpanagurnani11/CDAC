@@ -10,7 +10,6 @@ import Counter from './counter'
 import Count from './count'
 import Drop from './dropdown'
 import MathParent from './mathParent';
-import ShopStock from './shopstock'
 
 function App() {
   return (
@@ -38,10 +37,9 @@ function App() {
     {/* <MyClass></MyClass>
     <Life></Life>
     <Counter></Counter> */}
-    {/* <Count></Count>
+    <Count></Count>
     <Drop></Drop>
-    <MathParent></MathParent> */}
-    <ShopStock></ShopStock>
+    <MathParent></MathParent>
 
     </div>
   );
