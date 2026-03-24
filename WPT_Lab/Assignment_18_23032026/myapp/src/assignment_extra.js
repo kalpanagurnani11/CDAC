@@ -8,25 +8,22 @@
 // Orange
 
 // when you click on that button change the background color of page 
+export default function Color() {
 
-import react,{useState,useEffect} from "react";
-import './index'
-// import styled from 'styled-components'
+  function change(color) {
+    document.body.style.backgroundColor = color;
+  }
 
-export default function Color()
-{
-const [style,setStyle]=useEffect()
-    
-    
-   
-    return <>
-    
-    <button>Red</button>
-     <button>Yellow</button>
-      <button>Blue</button>
-       <button>Orange</button>
-     
-   
-    
+  return (
+    <>
+      <h2></h2>
+
+      <button onClick={() => change("red")}>Red</button>
+      <button onClick={() => change("yellow")}>Yellow</button>
+      <button onClick={() => change("green")}>Green</button>
+      <button onClick={() => change("blue")}>Blue</button>
+      <button onClick={() => change("orange")}>Orange</button>
     </>
-    }
+  );
+}
+
