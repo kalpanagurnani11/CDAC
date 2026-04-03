@@ -22,7 +22,16 @@ public class Array2D {
 	            System.out.println();
 	        }
 	    }
-
+	    public static int findSum(int[][] arr)
+			{
+	    	int sum=0;
+	    	for(int i=0;i<arr.length;i++)
+	    		for(int j=0;j<arr[i].length;j++)
+	    		{
+	    			sum+=arr[i][j];
+	    		}
+				return sum;
+			}
 	    public static int[][] addMatrices(int[][] a, int[][] b) {
 	        int[][] sum = new int[a.length][a[0].length];
 
@@ -34,6 +43,18 @@ public class Array2D {
 
 	        return sum;
 	    }
+	    public static int[][] subMatrices(int[][] a, int[][] b) {
+	        int[][] sub = new int[a.length][a[0].length];
+
+	        for (int i = 0; i < a.length; i++) {
+	            for (int j = 0; j < a[i].length; j++) {
+	                sub[i][j] = a[i][j] - b[i][j];
+	            }
+	        }
+
+	        return sub;
+	    }
+
 
 	    public static int[] findRowwiseMax(int[][] arr) {
 	        int[] max = new int[arr.length];

@@ -1,0 +1,1 @@
+product:laptop price:2000product:laptop price:2000

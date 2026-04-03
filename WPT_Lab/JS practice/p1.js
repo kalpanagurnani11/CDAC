@@ -1,10 +1,7 @@
-for(var i=5;i>=1;i--)
+let args=process.argv.slice(2)
+let sum=0;
+for(i=0;i<args.length;i++)
 {
-let str=""
-    for(var j=1;j<=i;j++)
-    {
-        str+="*";
-        
-    }
-    console.log(str)
+    sum+=Number(args[i])
 }
+console.log(sum)

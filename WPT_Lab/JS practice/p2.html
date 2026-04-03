@@ -1,49 +1,33 @@
 <html>
-    <head>
-        <script>
-            function change(){
-            document.getElementById('p1').innerHTML="hiii"
-            let v=document.getElementById('p1');
-            v.style.color="red"
-            v.style.fontSize=30
-            }
-            function hide()
-            {
-             let v=document.getElementById('p1');
-             v.style.display="none"   
-
-            }
-               function show()
-            {
-             let v=document.getElementById('p1');
-             v.style.display="block"   
-
-            }
-            count=0;
-             function countcli()
-            {
-                count+=1
-             let v=document.getElementById("count").innerHTML=count;
-               
-
-            }
-            function dates()
-            {
-                const d=new Date();
-                document.getElementById("datess").innerHTML=d;
-                alert(d)
-            }
-            
-        </script>
-    </head>
     <body>
-        <p id="p1" >hello</p>
-        <p>clicks:<a id="count">0</a></p>
-        <p> <a id="datess"> </a></p>
-        <button id="b1" onclick="hide()">hide</button>
-               <button id="b2" onclick="show()">show</button>
-               <button id="b4" onclick="countcli()">count</button>
-             <button id="b3" ondblclick="dates()">date</button>
+        <input type="text" id="fn">
+        <input type="text" id="ln">
+        <input type="date" id="dt">
+        <p id="res"></p>
+        <button onClick="generate()">generate</button>
+        <script>
+            function generate()
+            {
 
+            
+            let fn=document.getElementById("fn").value
+            let ln=document.getElementById("ln").value
+            let dt=document.getElementById("dt").value
+            let dob=new Date(dt).getFullYear()
+            let current=new Date().getFullYear()
+               let dobm=new Date(dt).getMonth()
+            let currentm=new Date().getMonth()
+            let age=current-dob
+let montha=currentm-dobm
+if(montha<0)
+{
+    age--;
+    montha+=12
+}
+            let uname=fn.substring(0,2)+age+montha+ln.substring(ln.length-2)
+
+            document.getElementById("res").innerHTML=uname
+            }  
+        </script>
     </body>
 </html>

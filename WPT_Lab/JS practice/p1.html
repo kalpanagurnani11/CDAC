@@ -2,28 +2,73 @@
 <html>
 <head>
 <style>
-.card{
-width:300px;
-padding:20px;
-border-radius:10px;
-box-shadow:0px 4px 10px gray;
-font-family:Arial;
+body{
+    border:2px solid black;
+    padding:20px;
+    width:300px;
 }
 
-img{
-width:100%;
-border-radius:10px;
+p{
+    background:lightyellow;
+    color:blue;
+    border:1px solid red;
+    padding:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-<img src="https://picsum.photos/300/200">
-<h3>Product</h3>
-<p>This is product description</p>
-</div>
+<h3>Currency Converter</h3>
+
+<input type="number" id="amt">
+
+<br><br>
+
+From:
+<select id="from">
+    <option value="INR">Rupee</option>
+    <option value="USD">Dollar</option>
+    <option value="EUR">Euro</option>
+</select>
+
+To:
+<select id="to">
+    <option value="INR">Rupee</option>
+    <option value="USD">Dollar</option>
+    <option value="EUR">Euro</option>
+</select>
+
+<br><br>
+
+<button onclick="convert()">Convert</button>
+
+<p id="res"></p>
+
+<script>
+function convert(){
+
+    let amt = Number(document.getElementById("amt").value);
+    let from = document.getElementById("from").value;
+    let to = document.getElementById("to").value;
+
+    // convert everything to INR first
+    let inr;
+
+    if(from=="INR") inr = amt;
+    else if(from=="USD") inr = amt * 80;
+    else if(from=="EUR") inr = amt * 90;
+
+    let result;
+
+    if(to=="INR") result = inr;
+    else if(to=="USD") result = inr / 80;
+    else if(to=="EUR") result = inr / 90;
+
+    document.getElementById("res").innerHTML =
+        "Converted Value: " + result;
+}
+</script>
 
 </body>
 </html>

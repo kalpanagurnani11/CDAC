@@ -1,39 +1,44 @@
 <html>
-<head>
+    <head>
+       
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       
+    </head>
+    <body>
+        <div id="box" style="background:red ;width:100px; height:100px;position:absolute"></div>
+        <button id="start">start</button>
+        <script>
+            $(document).ready(function(){
+                $("#start").click(function()
+            {
+                $("#box").animate({
+                    
+                    left:"300px",
+                    width:"150px",
+                    height:"150px",
+                })
+                  $("#box").animate({
+                    
+                    top:"300px"
+                   
+                })
+                  $("#box").animate({
+                    
+                    left:"0px"
+                   
+                })
+                 $("#box").animate({
+                    
+                    top:"0px",
+                    width:"100px",height:"100px"
+                   
+                })
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
+                })
+            })
 
-$(document).ready(function(){
-
-$("#start").click(function(){
-
-$("#box").animate({left:"300px",width:"150px",height:"150px"});
-$("#box").animate({top:"300px"});
-$("#box").animate({left:"0px"});
-$("#box").animate({top:"0px",width:"100px",height:"100px"});
-
-});
-
-$("#stop").click(function(){
-
-$("#box").stop();
-
-});
-
-});
-
-</script>
-
-</head>
-
-<body>
-
-<button id="start">Start</button>
-<button id="stop">Stop</button>
-
-<div id="box" style="width:100px;height:100px;background:red;position:relative;"></div>
-
-</body>
+           
+        </script>
+    </body>
 </html>

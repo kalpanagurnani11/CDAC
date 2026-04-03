@@ -1,0 +1,1 @@
+roduct:laptop price:2000

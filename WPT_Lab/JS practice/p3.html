@@ -1,16 +1,20 @@
 <html>
 <body>
-
-<p id="p1">Press any key</p>
-
+<p id="p1">Para1</p>
+<p id="p2">Para1</p>
+<p id="p3">Para1</p>
+<p id="p4">Para1</p>
+<input type="color" id="c1">
+<button onClick="change()">change</button>
 <script>
+    function change()
+    {
 
-document.onkeydown = function(e)
-{
- document.getElementById("p1").innerHTML = e.key;
-}
-
+    
+    let col=document.getElementById("c1").value
+    document.getElementById("p1").style.color=col;
+        document.getElementById("p1").style.fontWeight="bold";
+    }
 </script>
-
 </body>
 </html>
