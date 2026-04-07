@@ -107,16 +107,16 @@ public class TestEmpArray {
 			int id=sc.nextInt();
 			double netsal=EmployeeService.findNetSalary(id);
 			if(netsal!=-1) {
-				  System.out.println("Net salary for "+id+ ":" +netsal);
+				  System.out.println("Net salary "+id+ " is :" +netsal);
 			}else {
-				System.out.println("employee not found");
+				System.out.println("emp not found");
 			}
 	
 			
 		}
 		case 7->
 		{
-			Employee[] emparr =EmployeeService.getAll();
+			Employee[] emparr = EmployeeService.getAll();
 			for(Employee e:emparr) {
 				if(e!=null) {
 					  System.out.println(e);
@@ -133,7 +133,7 @@ public class TestEmpArray {
 		System.out.println("Thank You");
 		}
 		default->{
-			System.out.println("Wrong choice");
+			System.out.println("Wrong choice enter correct one");
 		}
 		
 		}
