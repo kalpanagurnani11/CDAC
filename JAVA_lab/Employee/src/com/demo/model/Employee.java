@@ -19,8 +19,6 @@ public class Employee {
     public int getId() {
         return id;
     }
-
-    // IMPORTANT → for HashSet (no duplicate based on id)
     @Override
     public boolean equals(Object o) {
         Employee e = (Employee) o;
