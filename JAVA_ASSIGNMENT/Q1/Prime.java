@@ -44,6 +44,3 @@ public class Prime {
 		}
 	}
 }
-//Write a program to maintain student information. For each student store studid, name, m1,
-//m2 and m3 (marks of 3 subjects ). Accept information for 2 students and display it as
-//follows.
