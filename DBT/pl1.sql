@@ -289,7 +289,15 @@ end $
 delimiter ;
 
 
-
+---------------------------------------------------------------
+drop function if exists fn1;
+delimiter $
+create function fn1() returns varchar(20)
+deterministic
+BEGIN
+	return "Hello World";
+end $
+delimiter ;
 
 
 
@@ -301,7 +309,7 @@ delimiter $
 create function fn1() returns varchar(20)
 deterministic
 BEGIN
-	return "Hello World";
+	
 end $
 delimiter ;
 
