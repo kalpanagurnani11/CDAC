@@ -39,14 +39,47 @@ public class TestCrudProductTable {
 								System.out.println("error");
 							}
 						}
-						case 2->{}
-						case 3->{}
+						case 2->{
+							System.out.println("Enter id");
+							int pid=sc.nextInt();
+							boolean status=pservice.deleteById(pid);
+							if(status) {
+								System.out.println("deleted successfully");
+							}
+							System.out.println(pid + " not found");
+						}
+						case 3->{
+							System.out.println("Enter id");
+							int pid=sc.nextInt();
+							System.out.println("Enter new qty");
+							int qty=sc.nextInt();
+							System.out.println("Enter price");
+							double pr=sc.nextDouble();
+							boolean status=pservice.modifyById(pid,qty,pr);
+							if(status) {
+								System.out.println("updation done");
+							}else {
+								System.out.println(pid+" not found");
+							}
+						}
 						case 4->{
 							List<Product> plist=pservice.getAll();
 							plist.forEach(System.out::println);
 						}
-						case 5->{}
-						case 6->{}
+						case 5->{
+							System.out.println("enter id to search");
+							int id=sc.nextInt();
+							Product p=pservice.getById(id);
+							if(p!=null) {
+								System.out.println(p);
+							}else {
+								System.out.println(id+" not found");
+							}
+						}
+						case 6->{
+							List<Product> plist=pservice.getAllSortedByName();
+							plist.forEach(System.out::println);
+						}
 						case 7->{
 							System.out.println("Thank you for visiting .........");
 							lservice.closeMyConnection();
@@ -55,15 +88,16 @@ public class TestCrudProductTable {
 							System.out.println("wrong choice");
 						}
 						}
+						
 					}while(choice!=7);
 						
 					}else if(role.equals("user")) {
 						System.out.println("you are user role");
 					}else {
-						System.out.println("invalid , Pls relogin");
+						System.out.println("invalid");
 					}
 		}else {
-			System.out.println("invalid Credentials, Pls relogin");
+			System.out.println("invalid Credentials");
 		}
 		
 

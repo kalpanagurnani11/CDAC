@@ -14,7 +14,7 @@ public class ProductDaoImpl  implements ProductDao{
     static {
     	conn=DBUtil.getMyConnection();
     }
-	@Override
+    @Override
 	public boolean saveProduct(Product p) {
 		try {
 			PreparedStatement pst=conn.prepareStatement("insert into product values(?,?,?,?,?)");
@@ -40,8 +40,14 @@ public class ProductDaoImpl  implements ProductDao{
 			PreparedStatement pst=conn.prepareStatement("select * from product");
 			ResultSet rs=pst.executeQuery();
 			List<Product> plist=new ArrayList<>();
+			Product p=null;
 			while(rs.next()) {
-				Product p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				
+				if(rs.getDate(5)!=null) {
+				     p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				}else {
+					p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),null);
+				}
 				plist.add(p);
 				
 			}
@@ -51,8 +57,84 @@ public class ProductDaoImpl  implements ProductDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 		
-	
-	return null;
+	}
+	@Override
+	public Product findById(int id) {
+		try {
+			PreparedStatement pst=conn.prepareStatement("select * from product where pid=?");
+			pst.setInt(1, id);
+			ResultSet rs=pst.executeQuery();
+			Product p=null;
+			if(rs.next()) {
+				if(rs.getDate(5)!=null) {
+				     p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				}else {
+					p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),null);
+				}
+				return p;
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@Override
+	public List<Product> findAllSortedByName() {
+		try {
+			PreparedStatement pst=conn.prepareStatement("select * from product order by pname");
+			ResultSet rs=pst.executeQuery();
+			List<Product> plist=new ArrayList<>();
+			Product p=null;
+			while(rs.next()) {
+				if(rs.getDate(5)!=null) {
+				     p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),rs.getDate(5).toLocalDate());
+				}else {
+					p=new Product(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getDouble(4),null);
+				}
+			    plist.add(p);
+			}
+			return plist;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
+	@Override
+	public boolean updateById(int pid, int qty, double pr) {
+		try {
+			PreparedStatement pst=conn.prepareStatement("update product set qty=?,price=? where pid=?");
+			pst.setInt(1, qty);
+			pst.setDouble(2, pr);
+			pst.setInt(3, pid);
+			int n=pst.executeUpdate();
+			if(n>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+	@Override
+	public boolean removeById(int pid) {
+		try {
+			PreparedStatement pst=conn.prepareStatement("delete from product where pid=?");
+			pst.setInt(1, pid);
+			int n=pst.executeUpdate();
+			if(n>0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }

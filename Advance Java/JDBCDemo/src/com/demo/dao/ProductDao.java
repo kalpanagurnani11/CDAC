@@ -10,4 +10,12 @@ public interface ProductDao {
 
 	List<Product> findAll();
 
+	Product findById(int id);
+
+	List<Product> findAllSortedByName();
+
+	boolean removeById(int pid);
+
+	boolean updateById(int pid, int qty, double pr);
+
 }

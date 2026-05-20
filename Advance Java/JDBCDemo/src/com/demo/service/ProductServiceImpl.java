@@ -36,10 +36,33 @@ public class ProductServiceImpl implements ProductService{
 		
 	}
 
-
    @Override
    public List<Product> getAll() {
 	return pdao.findAll();
+   }
+
+
+   @Override
+   public Product getById(int id) {
+	 return pdao.findById(id);
+   }
+
+
+   @Override
+   public List<Product> getAllSortedByName() {
+	return pdao.findAllSortedByName();
+   }
+
+
+   @Override
+   public boolean modifyById(int pid, int qty, double pr) {
+	     return pdao.updateById(pid,qty,pr);
+   }
+
+
+   @Override
+   public boolean deleteById(int pid) {
+	 return pdao.removeById(pid);
    }
    
 }

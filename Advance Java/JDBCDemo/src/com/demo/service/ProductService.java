@@ -10,4 +10,12 @@ public interface ProductService {
 
 	List<Product> getAll();
 
+	List<Product> getAllSortedByName();
+
+	Product getById(int id);
+
+	boolean modifyById(int pid, int qty, double pr);
+
+	boolean deleteById(int pid);
+
 }
