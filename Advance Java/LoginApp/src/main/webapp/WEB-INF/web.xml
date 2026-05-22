@@ -5,6 +5,9 @@
     <welcome-file>index.html</welcome-file>
     
   </welcome-file-list>
+  
+  
+  
   <servlet>
   <servlet-name>LoginForm</servlet-name>
   <servlet-class>com.demo.servlet.LoginServlet</servlet-class>
