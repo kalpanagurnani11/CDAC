@@ -28,4 +28,10 @@ public class ProductServiceImpl implements ProductService {
 		return pdao.insertProduct(p);
 	}
 
+	@Override
+	public Product getById(int pid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
