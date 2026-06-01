@@ -97,7 +97,7 @@ export default function Login({ onLoginSuccess, switchToRegister }) {
           fontSize: '0.8rem'
         }}>
           <span style={{ fontWeight: '600', color: 'var(--accent-cyan)', display: 'block', marginBottom: '0.25rem' }}>Demo Credentials:</span>
-          {/* <span style={{ display: 'block' }}>• <strong>Admin:</strong> admin / admin123</span> */}
+          <span style={{ display: 'block' }}>• <strong>Admin:</strong> admin / admin123</span>
           <span style={{ display: 'block' }}>• <strong>Reviewer:</strong> reviewer1 / reviewer123</span>
           <span style={{ display: 'block' }}>• <strong>Submitter:</strong> submitter1 / submitter123</span>
         </div>
