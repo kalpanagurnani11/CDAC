@@ -41,11 +41,11 @@ export default function AnalyticsDashboard() {
     );
   }
 
-  const { capitalPool, StatusDistribution, departmentSummary, recentTransactions, AverageScores, predictive } = metrics;
+  const { capitalPool, statusDistribution, departmentSummary, recentTransactions, averageScores, predictive } = metrics;
 
   // Visual Helper for SVG charts
   const maxRequested = departmentSummary.length > 0 
-    ? Math.max(...departmentSummary.map(d => d.TotalRequested)) 
+    ? Math.max(...departmentSummary.map(d => d.totalRequested)) 
     : 100000;
 
   return (
@@ -88,12 +88,12 @@ export default function AnalyticsDashboard() {
               <div style={{ padding: '0 1rem' }}>
                 <svg viewBox="0 0 500 220" style={{ width: '100%', height: 'auto', background: 'transparent' }}>
                   {departmentSummary.map((dept, index) => {
-                    const barHeight = maxRequested > 0 ? (dept.TotalRequested / maxRequested) * 150 : 0;
+                    const barHeight = maxRequested > 0 ? (dept.totalRequested / maxRequested) * 150 : 0;
                     const x = 50 + index * 90;
                     const y = 170 - barHeight;
 
                     return (
-                      <g key={dept.Department}>
+                      <g key={dept.department}>
                         {/* Bar */}
                         <rect
                           x={x}
@@ -115,9 +115,9 @@ export default function AnalyticsDashboard() {
                           fontWeight="bold"
                           fontFamily="var(--font-mono)"
                         >
-                          {dept.TotalRequested >= 1000000 
-                            ? `$${(dept.TotalRequested / 1000000).toFixed(1)}M` 
-                            : `$${(dept.TotalRequested / 1000).toFixed(0)}k`}
+                          {dept.totalRequested >= 1000000 
+                            ? `$${(dept.totalRequested / 1000000).toFixed(1)}M` 
+                            : `$${(dept.totalRequested / 1000).toFixed(0)}k`}
                         </text>
                         {/* Label */}
                         <text
@@ -128,7 +128,7 @@ export default function AnalyticsDashboard() {
                           fontSize="10"
                           fontWeight="500"
                         >
-                          {dept.Department}
+                          {dept.department}
                         </text>
                       </g>
                     );
@@ -170,7 +170,7 @@ export default function AnalyticsDashboard() {
                   Capital Exhaustion Runway
                 </span>
                 <h4 style={{ fontFamily: 'var(--font-mono)', fontSize: '1.4rem', color: 'var(--color-underreview)', margin: '0.5rem 0' }}>
-                  ~{predictive.RemainingDaysCapitalRunsOut} Days
+                  ~{predictive.remainingDaysCapitalRunsOut} Days
                 </h4>
                 <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
                   Estimated timeframe before the remaining capital pool is fully allocated based on current velocity.
@@ -188,7 +188,7 @@ export default function AnalyticsDashboard() {
               fontSize: '0.85rem',
               color: 'var(--text-secondary)'
             }}>
-              <strong>AI Recommendation Summary:</strong> The department of <strong>{predictive.TopDepartment}</strong> exhibits the highest demand for capital funding. To secure capital reserves, the board is advised to prioritize projects exhibiting Technical Feasibility scores above <strong>7.5/10</strong> and ROI Potential index over <strong>8/10</strong>.
+              <strong>AI Recommendation Summary:</strong> The department of <strong>{predictive.topDepartment}</strong> exhibits the highest demand for capital funding. To secure capital reserves, the board is advised to prioritize projects exhibiting Technical Feasibility scores above <strong>7.5/10</strong> and ROI Potential index over <strong>8/10</strong>.
             </div>
           </div>
         </div>
@@ -214,10 +214,10 @@ export default function AnalyticsDashboard() {
               <div>
                 <div className="flex-between" style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '0.25rem' }}>
                   <span>Strategic Alignment</span>
-                  <strong>{AverageScores.strategic}/10</strong>
+                  <strong>{averageScores.strategic}/10</strong>
                 </div>
                 <div className="progress-container">
-                  <div className="progress-bar" style={{ width: `${AverageScores.strategic * 10}%`, backgroundColor: 'var(--accent-secondary)' }}></div>
+                  <div className="progress-bar" style={{ width: `${averageScores.strategic * 10}%`, backgroundColor: 'var(--accent-secondary)' }}></div>
                 </div>
               </div>
 
@@ -253,7 +253,7 @@ export default function AnalyticsDashboard() {
               ) : (
                 recentTransactions.map((tx) => (
                   <div
-                    key={tx.Id}
+                    key={tx.id}
                     style={{
                       padding: '0.75rem',
                       background: 'rgba(255,255,255,0.01)',
@@ -266,19 +266,19 @@ export default function AnalyticsDashboard() {
                     }}
                   >
                     <div>
-                      <div style={{ fontWeight: '600', color: tx.Type === 'Allocation' ? 'var(--accent-secondary)' : 'var(--accent-cyan)' }}>
-                        {tx.Type.toUpperCase()}
+                      <div style={{ fontWeight: '600', color: tx.type === 'Allocation' ? 'var(--accent-secondary)' : 'var(--accent-cyan)' }}>
+                        {tx.type.toUpperCase()}
                       </div>
                       <div style={{ color: 'var(--text-secondary)', fontSize: '0.75rem', marginTop: '0.15rem' }}>
-                        {tx.Description}
+                        {tx.description}
                       </div>
                     </div>
                     <div style={{ textAlign: 'right' }}>
                       <strong style={{ fontFamily: 'var(--font-mono)', display: 'block' }}>
-                        {tx.Type === 'Allocation' ? '+' : '-'}{Number(tx.amount || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                        {tx.type === 'Allocation' ? '+' : '-'}{Number(tx.amount || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                       </strong>
                       <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                        {new Date(tx.TransactionDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                        {new Date(tx.transactionDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </span>
                     </div>
                   </div>

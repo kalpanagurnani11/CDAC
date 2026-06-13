@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ProposalGovernance.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de1e5aea938385fac22e8079b22ded4079cb17cc")]
 [assembly: System.Reflection.AssemblyProductAttribute("ProposalGovernance.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ProposalGovernance.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

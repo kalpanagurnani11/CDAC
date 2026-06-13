@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ut25SZgmFQY=",
+  "dgSpecHash": "8RWyzYDNVqs=",
   "success": true,
-  "projectFilePath": "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
+  "projectFilePath": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\asus\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\asus\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

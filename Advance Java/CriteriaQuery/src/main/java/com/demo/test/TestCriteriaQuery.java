@@ -26,7 +26,7 @@ public class TestCriteriaQuery {
 		Root<Product> root=cq.from(Product.class);
 		
 		cq.select(root);
-		List<Product>plist=session.createQuery(cq.getResultList())
+		List<Product>plist=session.createQuery(cq.getResultList());
 		
 		
 	}

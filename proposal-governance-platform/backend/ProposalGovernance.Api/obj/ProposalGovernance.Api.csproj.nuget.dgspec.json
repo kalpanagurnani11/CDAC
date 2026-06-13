@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {}
+    "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {
+    "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
+        "projectUniqueName": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
         "projectName": "ProposalGovernance.Api",
-        "projectPath": "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
+        "projectPath": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\asus\\.gemini\\antigravity\\scratch\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\obj\\",
+        "outputPath": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config"

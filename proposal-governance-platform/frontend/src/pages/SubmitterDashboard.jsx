@@ -56,17 +56,17 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
 
     try {
       // Get reviews
-      if (proposal.Status !== 'Draft' && proposal.Status !== 'Submitted') {
-        const revData = await api.get(`/reviews/proposal/${proposal.Id}`);
+      if (proposal.status !== 'Draft' && proposal.status !== 'Submitted') {
+        const revData = await api.get(`/reviews/proposal/${proposal.id}`);
         setReviews(revData);
       }
 
       // Get capital allocation if funded
-      if (proposal.Status === 'FundAllocated' || proposal.Status === 'Approved') {
-        const capData = await api.get(`/capital/proposal/${proposal.Id}`).catch(() => null);
+      if (proposal.status === 'FundAllocated' || proposal.status === 'Approved') {
+        const capData = await api.get(`/capital/proposal/${proposal.id}`).catch(() => null);
         setCapitalAllocation(capData);
         if (capData) {
-          const txData = await api.get(`/capital/transactions/${capData.Id}`).catch(() => []);
+          const txData = await api.get(`/capital/transactions/${capData.id}`).catch(() => []);
           setTransactions(txData);
         }
       }
@@ -119,7 +119,7 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
         setCurrentTab('dashboard');
       } else {
         // Edit draft
-        await api.put(`/proposals/${selectedProposal.Id}`, payload);
+        await api.put(`/proposals/${selectedProposal.id}`, payload);
         setSelectedProposal(null);
         setCurrentTab('dashboard');
       }
@@ -165,7 +165,7 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
     setDrawdownError('');
     try {
       const updatedAllocation = await api.post('/capital/drawdown', {
-        proposalId: selectedProposal.Id,
+        proposalId: selectedProposal.id,
         amount: parseFloat(drawdownAmount),
         description: drawdownDesc || 'Submitter drawdown request'
       });
@@ -175,7 +175,7 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
       setDrawdownDesc('');
 
       // Reload transactions
-      const txData = await api.get(`/capital/transactions/${updatedAllocation.Id}`).catch(() => []);
+      const txData = await api.get(`/capital/transactions/${updatedAllocation.id}`).catch(() => []);
       setTransactions(txData);
     } catch (err) {
       setDrawdownError(err.message || 'Drawdown execution failed.');
@@ -197,11 +197,11 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
 
   // Switch to editing state
   const handleEditDraftClick = (proposal) => {
-    setTitle(proposal.Title);
-    setDescription(proposal.Description);
-    setRequestedAmount(proposal.RequestedAmount.toString());
-    setUploadedFilePath(proposal.SupportingDocumentPath);
-    setUploadedFileName(proposal.SupportingDocumentPath ? proposal.SupportingDocumentPath.split('/').pop() : '');
+    setTitle(proposal.title);
+    setDescription(proposal.description);
+    setRequestedAmount(proposal.requestedAmount.toString());
+    setUploadedFilePath(proposal.supportingDocumentPath);
+    setUploadedFileName(proposal.supportingDocumentPath ? proposal.supportingDocumentPath.split('/').pop() : '');
     setCurrentTab('edit-proposal');
   };
 
@@ -286,13 +286,13 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                   </thead>
                   <tbody>
                     {proposals.map((prop) => (
-                      <tr key={prop.Id} onClick={() => handleViewProposal(prop)} style={{ cursor: 'pointer', background: selectedProposal?.Id === prop.Id ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
-                        <td style={{ fontWeight: '500' }}>{prop.Title}</td>
-                        <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.RequestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                      <tr key={prop.id} onClick={() => handleViewProposal(prop)} style={{ cursor: 'pointer', background: selectedProposal?.id === prop.id ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
+                        <td style={{ fontWeight: '500' }}>{prop.title}</td>
+                        <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.requestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
                         <td>
-                          <span className={`badge ${getStatusBadgeClass(prop.Status)}`}>{prop.Status}</span>
+                          <span className={`badge ${getStatusBadgeClass(prop.status)}`}>{prop.status}</span>
                         </td>
-                        <td style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{new Date(prop.UpdatedAt).toLocaleDateString()}</td>
+                        <td style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{new Date(prop.updatedAt).toLocaleDateString()}</td>
                         <td>
                           <button className="btn btn-secondary" style={{ padding: '0.35rem 0.7rem', fontSize: '0.75rem' }} onClick={(e) => { e.stopPropagation(); handleViewProposal(prop); }}>
                             View Details
@@ -311,41 +311,41 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
             {selectedProposal ? (
               <div className="detail-card" style={{ animation: 'fadeIn 0.3s ease-out' }}>
                 <div className="flex-between mb-1" style={{ borderBottom: '1px solid var(--border-color)', paddingBottom: '1rem' }}>
-                  <span className={`badge ${getStatusBadgeClass(selectedProposal.Status)}`}>{selectedProposal.Status}</span>
+                  <span className={`badge ${getStatusBadgeClass(selectedProposal.status)}`}>{selectedProposal.status}</span>
                   <button className="btn btn-secondary" style={{ padding: '0.3rem 0.6rem', fontSize: '0.75rem' }} onClick={() => setSelectedProposal(null)}>
                     Clear Selection
                   </button>
                 </div>
 
                 <div className="detail-section">
-                  <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: '600' }}>{selectedProposal.Title}</h2>
+                  <h2 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', fontWeight: '600' }}>{selectedProposal.title}</h2>
                   <h4 style={{ marginTop: '0.5rem' }}>Description</h4>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{selectedProposal.Description}</p>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>{selectedProposal.description}</p>
                 </div>
 
                 <div className="detail-section flex-between">
                   <div>
                     <h4>Requested Capital</h4>
                     <span style={{ fontSize: '1.2rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)' }}>
-                      {selectedProposal.RequestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                      {selectedProposal.requestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                     </span>
                   </div>
-                  {selectedProposal.ApprovedAmount > 0 && (
+                  {selectedProposal.approvedAmount > 0 && (
                     <div>
                       <h4>Approved Capital</h4>
                       <span style={{ fontSize: '1.2rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: 'var(--accent-secondary)' }}>
-                        {selectedProposal.ApprovedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                        {selectedProposal.approvedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                       </span>
                     </div>
                   )}
                 </div>
 
                 {/* Supporting Document Download */}
-                {selectedProposal.SupportingDocumentPath && (
+                {selectedProposal.supportingDocumentPath && (
                   <div className="detail-section">
                     <h4>Supporting Documentation</h4>
                     <a
-                      href={api.downloadUrl(selectedProposal.SupportingDocumentPath)}
+                      href={api.downloadUrl(selectedProposal.supportingDocumentPath)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-secondary"
@@ -362,12 +362,12 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                 )}
 
                 {/* Draft Actions */}
-                {selectedProposal.Status === 'Draft' && (
+                {selectedProposal.status === 'Draft' && (
                   <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.5rem' }}>
                     <button className="btn btn-secondary" style={{ flex: 1, padding: '0.5rem' }} onClick={() => handleEditDraftClick(selectedProposal)}>
                       Edit Draft
                     </button>
-                    <button className="btn btn-primary" style={{ flex: 1, padding: '0.5rem' }} onClick={() => handleSubmitProposal(selectedProposal.Id)}>
+                    <button className="btn btn-primary" style={{ flex: 1, padding: '0.5rem' }} onClick={() => handleSubmitProposal(selectedProposal.id)}>
                       Submit to Governance
                     </button>
                   </div>
@@ -376,7 +376,7 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                 {/* AI report trigger button */}
                 <button
                   className="btn btn-secondary"
-                  onClick={() => triggerAiAnalysis(selectedProposal.Id)}
+                  onClick={() => triggerAiAnalysis(selectedProposal.id)}
                   style={{
                     width: '100%',
                     justifyContent: 'center',
@@ -397,12 +397,12 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                   <div className="detail-section" style={{ marginTop: '1.5rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.5rem' }}>
                     <h4 style={{ marginBottom: '0.75rem' }}>Reviewer Evaluations</h4>
                     {reviews.map((rev) => (
-                      <div key={rev.Id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-color)', padding: '0.85rem', borderRadius: '6px', marginBottom: '0.5rem', fontSize: '0.85rem' }}>
+                      <div key={rev.id} style={{ background: 'rgba(255,255,255,0.02)', border: '1px solid var(--border-color)', padding: '0.85rem', borderRadius: '6px', marginBottom: '0.5rem', fontSize: '0.85rem' }}>
                         <div className="flex-between mb-1">
-                          <strong>{rev.Reviewer?.FullName}</strong>
-                          <span style={{ color: 'var(--accent-cyan)' }}>Avg Score: {Math.round((rev.FeasibilityScore + rev.StrategicScore + rev.RiskScore + rev.RoiScore) / 4, 1)}/10</span>
+                          <strong>{rev.reviewer?.fullName}</strong>
+                          <span style={{ color: 'var(--accent-cyan)' }}>Avg Score: {Math.round((rev.feasibilityScore + rev.strategicScore + rev.riskScore + rev.roiScore) / 4, 1)}/10</span>
                         </div>
-                        <p style={{ fontStyle: 'italic', color: 'var(--text-secondary)' }}>"{rev.Comment}"</p>
+                        <p style={{ fontStyle: 'italic', color: 'var(--text-secondary)' }}>"{rev.comment}"</p>
                       </div>
                     ))}
                   </div>
@@ -416,21 +416,21 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem', marginBottom: '1rem' }}>
                       <div>
                         <span style={{ color: 'var(--text-secondary)' }}>Allocated:</span>{' '}
-                        <strong style={{ fontFamily: 'var(--font-mono)' }}>{capitalAllocation.AllocatedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</strong>
+                        <strong style={{ fontFamily: 'var(--font-mono)' }}>{capitalAllocation.allocatedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</strong>
                       </div>
                       <div>
                         <span style={{ color: 'var(--text-secondary)' }}>Disbursed:</span>{' '}
-                        <strong style={{ fontFamily: 'var(--font-mono)' }}>{capitalAllocation.DisbursedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</strong>
+                        <strong style={{ fontFamily: 'var(--font-mono)' }}>{capitalAllocation.disbursedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</strong>
                       </div>
                     </div>
 
                     <div style={{ marginBottom: '1rem' }}>
                       <div className="flex-between" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                         <span>Fund Utilization Progress</span>
-                        <span>{Math.round((capitalAllocation.DisbursedAmount / capitalAllocation.AllocatedAmount) * 100)}%</span>
+                        <span>{Math.round((capitalAllocation.disbursedAmount / capitalAllocation.allocatedAmount) * 100)}%</span>
                       </div>
                       <div className="progress-container">
-                        <div className="progress-bar cyan" style={{ width: `${(capitalAllocation.DisbursedAmount / capitalAllocation.AllocatedAmount) * 100}%` }}></div>
+                        <div className="progress-bar cyan" style={{ width: `${(capitalAllocation.disbursedAmount / capitalAllocation.allocatedAmount) * 100}%` }}></div>
                       </div>
                     </div>
 
@@ -467,15 +467,15 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                         <h5 style={{ fontSize: '0.85rem', fontWeight: '600', marginBottom: '0.5rem' }}>Transaction History</h5>
                         <div style={{ maxHeight: '150px', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                           {transactions.map((tx) => (
-                            <div key={tx.Id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', borderRadius: '4px', fontSize: '0.75rem' }}>
+                            <div key={tx.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.4rem', background: 'rgba(255,255,255,0.01)', border: '1px solid var(--border-color)', borderRadius: '4px', fontSize: '0.75rem' }}>
                               <div>
-                                <span style={{ fontWeight: '600', color: tx.Type === 'Allocation' ? 'var(--accent-secondary)' : 'var(--accent-cyan)' }}>
-                                  [{tx.Type}]
+                                <span style={{ fontWeight: '600', color: tx.type === 'Allocation' ? 'var(--accent-secondary)' : 'var(--accent-cyan)' }}>
+                                  [{tx.type}]
                                 </span>{' '}
-                                <span>{tx.Description}</span>
+                                <span>{tx.description}</span>
                               </div>
                               <div style={{ fontFamily: 'var(--font-mono)' }}>
-                                {tx.Amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                                {tx.amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                               </div>
                             </div>
                           ))}
@@ -586,6 +586,10 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                   <div className="ai-analysis-block">
                     <h4>Financial Yield Analysis</h4>
                     <p>{aiReport.RoiAnalysis}</p>
+                  </div>
+                  <div className="ai-analysis-block">
+                    <h4>Actionable Suggestion</h4>
+                    <p>{aiReport.Suggestion}</p>
                   </div>
                 </div>
               ) : (

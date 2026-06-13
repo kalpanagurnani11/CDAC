@@ -21,7 +21,7 @@ export default function ReviewerDashboard() {
       const allProposals = await api.get('/proposals');
       
       // Filter proposals that are Submitted or UnderReview (meaning they need a review!)
-      const queue = allProposals.filter(p => p.Status === 'Submitted' || p.Status === 'UnderReview');
+      const queue = allProposals.filter(p => p.status === 'Submitted' || p.status === 'UnderReview');
       setProposals(queue);
 
       // Fetch user's review history if they have reviews (we can fetch this via props or route)
@@ -30,7 +30,7 @@ export default function ReviewerDashboard() {
       // Actually we have a GetByReviewerIdAsync(reviewerId) in ReviewRepository but didn't make a direct endpoint. 
       // No worries! We can just fetch proposals that are Reviewed, Approved, Rejected, FundAllocated. 
       // Reviewers can see their evaluations by looking at Reviewed items. Let's make it easy:
-      const reviewedItems = allProposals.filter(p => p.Status !== 'Draft' && p.Status !== 'Submitted' && p.Status !== 'UnderReview');
+      const reviewedItems = allProposals.filter(p => p.status !== 'Draft' && p.status !== 'Submitted' && p.status !== 'UnderReview');
       setHistoryReviews(reviewedItems);
     } catch (err) {
       console.error('Error fetching reviewer queue', err);
@@ -68,7 +68,7 @@ export default function ReviewerDashboard() {
 
     try {
       await api.post('/reviews', {
-        proposalId: selectedProposal.Id,
+        proposalId: selectedProposal.id,
         feasibilityScore: parseInt(feasibilityScore),
         strategicScore: parseInt(strategicScore),
         riskScore: parseInt(riskScore),
@@ -124,12 +124,12 @@ export default function ReviewerDashboard() {
                 </thead>
                 <tbody>
                   {proposals.map((prop) => (
-                    <tr key={prop.Id} onClick={() => handleSelectProposal(prop)} style={{ cursor: 'pointer', background: selectedProposal?.Id === prop.Id ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
-                      <td style={{ fontWeight: '500' }}>{prop.Title}</td>
-                      <td>{prop.Department}</td>
-                      <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.RequestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                    <tr key={prop.id} onClick={() => handleSelectProposal(prop)} style={{ cursor: 'pointer', background: selectedProposal?.id === prop.id ? 'rgba(255,255,255,0.02)' : 'transparent' }}>
+                      <td style={{ fontWeight: '500' }}>{prop.title}</td>
+                      <td>{prop.department}</td>
+                      <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.requestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
                       <td>
-                        <span className={`badge ${getStatusBadgeClass(prop.Status)}`}>{prop.Status}</span>
+                        <span className={`badge ${getStatusBadgeClass(prop.status)}`}>{prop.status}</span>
                       </td>
                       <td>
                         <button className="btn btn-primary" style={{ padding: '0.35rem 0.7rem', fontSize: '0.75rem' }} onClick={(e) => { e.stopPropagation(); handleSelectProposal(prop); }}>
@@ -163,12 +163,12 @@ export default function ReviewerDashboard() {
                 </thead>
                 <tbody>
                   {historyReviews.map((prop) => (
-                    <tr key={prop.Id}>
-                      <td style={{ fontWeight: '500' }}>{prop.Title}</td>
-                      <td>{prop.Department}</td>
-                      <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.RequestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
+                    <tr key={prop.id}>
+                      <td style={{ fontWeight: '500' }}>{prop.title}</td>
+                      <td>{prop.department}</td>
+                      <td style={{ fontFamily: 'var(--font-mono)' }}>{prop.requestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</td>
                       <td>
-                        <span className={`badge ${getStatusBadgeClass(prop.Status)}`}>{prop.Status}</span>
+                        <span className={`badge ${getStatusBadgeClass(prop.status)}`}>{prop.status}</span>
                       </td>
                     </tr>
                   ))}
@@ -190,20 +190,20 @@ export default function ReviewerDashboard() {
               </div>
 
               <div className="detail-section">
-                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontWeight: '600' }}>{selectedProposal.Title}</h3>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Submitter ID: {selectedProposal.SubmitterId} | Dept: {selectedProposal.Department}</span>
+                <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', fontWeight: '600' }}>{selectedProposal.title}</h3>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Submitter ID: {selectedProposal.submitterId} | Dept: {selectedProposal.department}</span>
                 <h4 style={{ marginTop: '1rem' }}>Description</h4>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{selectedProposal.Description}</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>{selectedProposal.description}</p>
                 
                 <h4 style={{ marginTop: '1rem' }}>Budget Requested</h4>
                 <span style={{ fontSize: '1.2rem', fontWeight: 'bold', fontFamily: 'var(--font-mono)', color: 'var(--accent-cyan)' }}>
-                  {selectedProposal.RequestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+                  {selectedProposal.requestedAmount.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
                 </span>
 
-                {selectedProposal.SupportingDocumentPath && (
+                {selectedProposal.supportingDocumentPath && (
                   <div style={{ marginTop: '1rem' }}>
                     <a
-                      href={api.downloadUrl(selectedProposal.SupportingDocumentPath)}
+                      href={api.downloadUrl(selectedProposal.supportingDocumentPath)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-secondary"
