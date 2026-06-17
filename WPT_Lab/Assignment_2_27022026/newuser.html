@@ -1,0 +1,81 @@
+<!-- 2) NewUser.html
+     FirstName
+     LastName
+     UserName
+     Gender
+     KnownLanguages   English/Marathi/Hindi
+     email id 
+     Password
+     Re-enter Password
+     Register Button  -->
+
+<html>
+<head>
+<title>newuser</title>
+
+<script>
+
+function showData()
+{
+
+document.getElementById("tfname").innerHTML = document.getElementById("fname").value;
+document.getElementById("tlname").innerHTML = document.getElementById("lname").value;
+document.getElementById("tuname").innerHTML = document.getElementById("uname").value;
+document.getElementById("temail").innerHTML = document.getElementsByName("email")[0].value;
+
+}
+
+</script>
+
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<pre>
+<label> Firstname:</label><input type="text" name="fname" id="fname">
+
+<label> Lastname: </label><input type="text" name="lname" id="lname">
+
+<label> Username: </label><input type="text" name="uname" id="uname">
+
+<label> Gender:</label>
+<input type="radio" name="gender"> Male
+<input type="radio" name="gender"> Female
+
+<label> Known Languages:</label>
+<input type="checkbox"> English
+<input type="checkbox"> Marathi
+<input type="checkbox"> Hindi
+
+<label> mail ID:</label> <input type="email" name="email">
+
+<label> Password:</label> <input type="password" name="password">
+
+<label> Re-enter Password:</label><input type="password" name="repassword">
+
+<input type="button" value="Register" onclick="showData()">
+</pre>
+
+
+<h3>Details</h3>
+
+<table border="1">
+<tr>
+<th>First Name</th>
+<th>Last Name</th>
+<th>User Name</th>
+<th>Email</th>
+</tr>
+
+<tr>
+<td id="tfname"></td>
+<td id="tlname"></td>
+<td id="tuname"></td>
+<td id="temail"></td>
+</tr>
+
+</table>
+
+</body>
+</html>

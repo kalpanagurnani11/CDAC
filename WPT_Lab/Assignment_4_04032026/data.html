@@ -1,0 +1,37 @@
+<!-- 
+5) take one textfield and 3 radio buttons 
+        UpperCase      LowerCase    asitis 
+		
+	after entering data on selection of radio button display 
+	reuired output in p tag on same page  -->
+<html>
+<body>
+
+<input type="text" id="t">
+
+<input type="radio" name="r" onclick="f('u')">UpperCase
+<input type="radio" name="r" onclick="f('l')">LowerCase
+<input type="radio" name="r" onclick="f('a')">AsItIs
+
+<p id="o"></p>
+
+<script>
+
+function f(x){
+
+let v=document.getElementById("t").value;
+
+if(x=="u")
+v=v.toUpperCase();
+
+else if(x=="l")
+v=v.toLowerCase();
+
+document.getElementById("o").innerHTML=v;
+
+}
+
+</script>
+
+</body>
+</html>

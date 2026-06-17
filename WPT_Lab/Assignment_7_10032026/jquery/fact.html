@@ -1,0 +1,63 @@
+<!-- <html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+        <script>
+$(document).ready(function()
+    {
+        $("#ok").click(function()
+    {
+
+    let n = $("#num").val();
+    let fact = 1;
+
+    for(let i=1;i<=n;i++)
+        fact = fact * i;
+
+    $("#res").text("Factorial = " + fact);
+})
+    }
+)
+</script>
+    </head>
+    <body>
+        <input type="number" id ="num" placeholder="enter a number">
+        <p id="res">result</p>
+    <button>show</button>    
+    </body>
+</html> -->
+
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function()
+{
+    $("#ok").click(function()
+    {
+        let n = Number($("#num").val());
+        let fact = 1;
+
+        for(let i=1;i<=n;i++)
+        {
+            fact = fact * i;
+        }
+
+        $("#res").text("fact is " + fact);
+    });
+});
+</script>
+
+</head>
+
+<body>
+
+<input type="number" id="num" placeholder="enter a number">
+
+<p id="res">result</p>
+
+<button id="ok">show</button>
+
+</body>
+</html>

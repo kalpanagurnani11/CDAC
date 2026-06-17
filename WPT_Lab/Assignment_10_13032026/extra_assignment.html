@@ -1,0 +1,38 @@
+<html>
+<head>
+<script>
+
+function generate(){
+
+let f=document.getElementById("fname").value
+let l=document.getElementById("lname").value
+let b=document.getElementById("bdate").value
+
+let age=new Date().getFullYear()-new Date(b).getFullYear()
+
+let username=f.substring(0,2)+age+l.substring(l.length-2)
+
+document.getElementById("p1").innerHTML=username
+
+}
+
+</script>
+</head>
+
+<body>
+
+<label>First Name</label>
+<input type="text" id="fname"><br><br>
+
+<label>Last Name</label>
+<input type="text" id="lname"><br><br>
+
+<label>Birth Date</label>
+<input type="date" id="bdate"><br><br>
+
+<button onclick="generate()">Generate Username</button>
+
+<p id="p1"></p>
+
+</body>
+</html>

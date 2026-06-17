@@ -1,0 +1,33 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+<h1>Head 1</h1>
+<h2>Head 2</h2>
+<h3>Head 3</h3>
+
+<p id="p"></p>
+
+<script>
+
+$(document).ready(function(){
+
+$("h1,h2,h3").click(function(){
+$(this).hide();
+});
+
+$(document).mousemove(function(e){
+
+$("#p").text("Left : " + e.pageX + " Top : " + e.pageY);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<body>
+
+<script>
+
+let obj={
+    id:101,
+    name:"Kalpana",
+    course:"Engineering"
+}
+
+let json=JSON.stringify(obj)
+
+document.write("JSON :"+json+"<br>")
+
+let obj2=JSON.parse(json)
+
+document.write(obj2.id+" "+obj2.name+" "+obj2.course)
+
+</script>
+
+</body>
+</html>

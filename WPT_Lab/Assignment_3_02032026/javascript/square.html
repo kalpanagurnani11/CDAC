@@ -1,0 +1,22 @@
+<!-- 
+4) Accept input from user using textfield
+    use HTML5 validator to specify number format input
+	on Button Click 
+	Display Sqaure on that number on webpage  -->
+<html>
+<body>
+
+<input type="number" id="n">
+<button onclick="s()">Square</button>
+
+<p id="o"></p>
+
+<script>
+function s(){
+let n = document.getElementById("n").value;
+document.getElementById("o").innerHTML = n*n;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!-- 3) 
+Write an HTML that arrays.html
+Show a textfield -accept a value
+
+Check if the value is present in the array ---display found or not found in a <p> tag
+
+Show a button add-to-end } if this button is clicked then append in the array
+
+Show a button insert-at-index , textfield to accept index
+On click insert the value at that index and show the final array in another <p> tag
+
+Show a button remove tf to accept index
+
+Remove that element and show final array in another <p>
+ -->
+
+<html>
+<body>
+
+<input type="text" id="v">
+<button onclick="chk()">Check</button>
+
+<button onclick="add()">Add to End</button>
+
+<br><br>
+
+<input type="number" id="i" placeholder="index">
+<button onclick="ins()">Insert</button>
+
+<br><br>
+
+<input type="number" id="r" placeholder="remove index">
+<button onclick="rem()">Remove</button>
+
+<p id="o1"></p>
+<p id="o2"></p>
+
+<script>
+
+let a=["A","B","C"];
+
+function chk(){
+
+let v=document.getElementById("v").value;
+
+if(a.includes(v))
+document.getElementById("o1").innerHTML="Found";
+else
+document.getElementById("o1").innerHTML="Not Found";
+
+}
+
+function add(){
+
+let v=document.getElementById("v").value;
+a.push(v);
+
+document.getElementById("o2").innerHTML=a;
+
+}
+
+function ins(){
+
+let v=document.getElementById("v").value;
+let i=document.getElementById("i").value;
+
+a.splice(i,0,v);
+
+document.getElementById("o2").innerHTML=a;
+
+}
+
+function rem(){
+
+let i=document.getElementById("r").value;
+
+a.splice(i,1);
+
+document.getElementById("o2").innerHTML=a;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <input type="text" id="fn">
+        <input type="text" id="ln">
+        <input type="date" id="dt">
+        <p id="res"></p>
+        <button onClick="generate()">generate</button>
+        <script>
+            function generate()
+            {
+
+            
+            let fn=document.getElementById("fn").value
+            let ln=document.getElementById("ln").value
+            let dt=document.getElementById("dt").value
+            let dob=new Date(dt).getFullYear()
+            let current=new Date().getFullYear()
+               let dobm=new Date(dt).getMonth()
+            let currentm=new Date().getMonth()
+            let age=current-dob
+let montha=currentm-dobm
+if(montha<0)
+{
+    age--;
+    montha+=12
+}
+            let uname=fn.substring(0,2)+age+montha+ln.substring(ln.length-2)
+
+            document.getElementById("res").innerHTML=uname
+            }  
+        </script>
+    </body>
+</html>

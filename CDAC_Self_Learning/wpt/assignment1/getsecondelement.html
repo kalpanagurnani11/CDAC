@@ -1,0 +1,30 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+<p>Para1</p>
+<p>Para2</p>
+<p>Para 3</p>
+
+<button id="b">Get Sec Element</button>
+
+<script>
+
+$(document).ready(function(){
+
+$("#b").click(function(){
+
+let text = $("p").eq(1).text();  
+alert(text);
+
+});
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!-- 2) take 1 text field and 2 buttons add and display 
+    on click on add button add the contents of textfield in array 
+	on click on Display button display array data on html page 
+		in UL list format -->
+
+<html>
+<body>
+
+<input type="text" id="t">
+<button onclick="add()">Add</button>
+<button onclick="show()">Display</button>
+
+<ul id="u"></ul>
+
+<script>
+
+let a=[];
+
+function add(){
+let v=document.getElementById("t").value;
+a.push(v);
+}
+
+function show(){
+let s="";
+for(let i=0;i<a.length;i++){
+s += "<li>"+a[i]+"</li>";
+}
+document.getElementById("u").innerHTML=s;
+}
+
+</script>
+
+</body>
+</html>

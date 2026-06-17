@@ -1,0 +1,37 @@
+<html>
+<body>
+
+<input type="text" id="title" placeholder="enter title">
+<button onclick="send()">POST</button>
+
+<script>
+
+function send()
+{
+
+let t=document.getElementById("title").value
+
+let x=new XMLHttpRequest()
+
+x.open("POST","https://jsonplaceholder.typicode.com/todos",true)
+
+x.setRequestHeader("Content-type","application/json")
+
+x.onload=function()
+{
+document.write(this.responseText)
+}
+
+let data={
+title:t,
+completed:false
+}
+
+x.send(JSON.stringify(data))
+
+}
+
+</script>
+
+</body>
+</html>

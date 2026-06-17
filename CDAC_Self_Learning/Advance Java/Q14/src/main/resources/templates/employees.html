@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Employee Client Dashboard</title>
+</head>
+<body>
+    <h1>Employees fetched from REST API</h1>
+    <div th:if="${error != null}">
+        <p style="color: red;" th:text="${error}"></p>
+    </div>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="employee : ${employees}">
+                <td th:text="${employee.id}">1</td>
+                <td th:text="${employee.name}">John Doe</td>
+                <td th:text="${employee.email}">john@example.com</td>
+                <td th:text="${employee.department}">IT</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

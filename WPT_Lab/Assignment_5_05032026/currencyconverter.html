@@ -1,0 +1,82 @@
+<!-- 
+2) currency_convertor.html
+Textfield , dropdown for FROM and TO
+Rupee , dollar, euro To = rupee dollar euro
+Convert-button = onclick convert the amount and show in paragraph
+
+Rupee 80 = 80 1 $ 
+
+Apply a border over the entire fields
+Apply bg color, color font for <p> tag with a internal border using internal stylesheet -->
+
+<html>
+
+<head>
+
+<style>
+
+p{
+border:2px solid black;
+background:rgb(177, 225, 241);
+color:black;
+padding:10px;
+}
+
+div{
+border:2px solid black;
+padding:10px;
+width:250px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div>
+
+<input type="number" id="amt">
+
+<select id="f">
+<option>rupee</option>
+<option>dollar</option>
+<option>euro</option>
+</select>
+
+<select id="t">
+<option>rupee</option>
+<option>dollar</option>
+<option>euro</option>
+</select>
+
+<button onclick="c()">Convert</button>
+
+</div>
+
+<p id="o"></p>
+
+<script>
+
+function c(){
+
+let a=document.getElementById("amt").value;
+let f=document.getElementById("f").value;
+let t=document.getElementById("t").value;
+
+let r=a;
+
+if(f=="rupee" && t=="dollar")
+r=a/80;
+
+else if(f=="dollar" && t=="rupee")
+r=a*80;
+
+document.getElementById("o").innerHTML=r;
+
+}
+
+</script>
+
+</body>
+</html>

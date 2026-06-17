@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<input type="number" id="len" placeholder="enter length">
+<button onclick="pass()">Generate</button>
+
+<p id="p1"></p>
+
+<script>
+
+function pass()
+{
+
+let l=document.getElementById("len").value
+
+let str="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*"
+
+let p=""
+
+for(let i=0;i<l;i++)
+{
+let r=Math.floor(Math.random()*str.length)
+p+=str.charAt(r)
+}
+
+document.getElementById("p1").innerHTML=p
+
+}
+
+</script>
+
+</body>
+</html>

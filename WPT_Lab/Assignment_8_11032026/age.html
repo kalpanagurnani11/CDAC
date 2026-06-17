@@ -1,0 +1,29 @@
+<html>
+
+<body>
+
+Birth Date
+<input type="date" id="d">
+
+<button onclick="f()">Age</button>
+
+<p id="a"></p>
+
+<script>
+
+function f()
+{
+
+let b=new Date(document.getElementById("d").value);
+let t=new Date();
+
+let age=t.getFullYear()-b.getFullYear();
+
+document.getElementById("a").innerHTML="Age = "+age;
+
+}
+
+</script>
+
+</body>
+</html>

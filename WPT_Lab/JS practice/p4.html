@@ -1,0 +1,54 @@
+<html>
+    <head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    </head>
+    <body>
+        <div id="box" style="width:100px; height:100px;background-color:red;position:absolute"></div>
+        <p id="p1">hello</p>
+        <p id="p2"></p>
+        <input type="number" id="num">
+        <button id="start" >btm</button>
+         <button id="stop" >stop</button>
+        <script>
+           $(document).ready(function(){
+            $("#num").change(function(){
+                let n=parseInt($(this).val())
+                let fact=1
+                for(let i=1;i<=n;i++)
+            {
+                fact=fact*i;
+            }
+            $("#p1").text(fact)
+                
+
+            })
+            $("#start").click(function()
+        {
+            $("#box").animate({
+                left:"150px",
+                width:"200",
+                height:"200"
+
+            })
+              $("#box").animate({
+                top:"150px",
+            
+            })
+            $("#box").animate({
+                left:"0px",
+            
+            })
+             $("#box").animate({
+                top:"0px",
+            
+            })
+        })
+         $("#stop").click(function()
+        {
+            $("#box").stop()
+        })
+           })
+        </script>
+    </body>
+</html>

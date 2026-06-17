@@ -1,0 +1,43 @@
+<html>
+<head>
+<script>
+
+function v(){
+let u=document.getElementById("u").value
+let p=document.getElementById("p").value
+
+if(u==""){
+alert("enter username")
+return
+}
+
+if(p==""){
+alert("enter password")
+return
+}
+
+if(p.length<8 || p.length>12){
+alert("password 8-12")
+return
+}
+
+if(u=="iet" && p=="iet"){
+window.location="home.html"
+}
+else{
+alert("invalid")
+}
+}
+
+</script>
+</head>
+
+<body>
+
+Username <input type="text" id="u"><br><br>
+Password <input type="password" id="p"><br><br>
+
+<button onclick="v()">Login</button>
+
+</body>
+</html>

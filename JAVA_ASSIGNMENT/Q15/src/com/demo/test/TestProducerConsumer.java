@@ -1,0 +1,17 @@
+package com.demo.test;
+
+import com.demo.thread.*;
+import com.demo.service.SharedBuffer;
+
+public class TestProducerConsumer {
+    public static void main(String[] args) {
+
+        SharedBuffer buffer = new SharedBuffer();
+
+        Producer p = new Producer(buffer);
+        Consumer c = new Consumer(buffer);
+
+        p.start();
+        c.start();
+    }
+}

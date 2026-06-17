@@ -1,0 +1,48 @@
+<html>
+<body>
+
+ID <input id="i"><br><br>
+Name <input id="n"><br><br>
+
+<button onclick="add()">Add</button>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+</tr>
+
+<tbody id="d"></tbody>
+
+</table>
+
+<script>
+
+let arr=[]
+
+function add(){
+
+let s={
+id:document.getElementById("i").value,
+name:document.getElementById("n").value
+}
+
+arr.push(s)
+
+let t=""
+
+for(let x of arr){
+
+t+="<tr><td>"+x.id+"</td><td>"+x.name+"</td></tr>"
+
+}
+
+document.getElementById("d").innerHTML=t
+
+}
+
+</script>
+
+</body>
+</html>

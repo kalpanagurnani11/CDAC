@@ -1,0 +1,30 @@
+<html>
+<body>
+
+<button onclick="start()">Start</button>
+<button onclick="stop()">Stop</button>
+
+<script>
+
+function msg(){
+alert("Timeout executed")
+}
+
+setTimeout(msg,3000)
+
+let i
+
+function start(){
+i=setInterval(function(){
+console.log("Running")
+},1000)
+}
+
+function stop(){
+clearInterval(i)
+}
+
+</script>
+
+</body>
+</html>

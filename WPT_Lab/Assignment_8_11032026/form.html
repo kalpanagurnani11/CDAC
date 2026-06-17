@@ -1,0 +1,26 @@
+<html>
+<body>
+
+<input type="text" id="t" required minlength="5" maxlength="10">
+<button onclick="check()">Submit</button>
+
+<span id="m"></span>
+
+<script>
+
+function check(){
+
+let a=document.getElementById("t")
+
+if(!a.checkValidity()){
+
+document.getElementById("m").innerHTML=a.validationMessage
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+<body>
+
+<button onclick="load()">Load Data</button>
+
+<table border="1">
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Price</th>
+</tr>
+
+<tbody id="d"></tbody>
+</table>
+
+<script>
+
+function load(){
+
+fetch("https://fakestoreapi.com/products")
+
+.then(r=>r.json())
+
+.then(data=>{
+
+let t=""
+
+for(let i=0;i<data.length;i++){
+
+t+="<tr>"
+t+="<td>"+data[i].id+"</td>"
+t+="<td>"+data[i].title+"</td>"
+t+="<td>"+data[i].price+"</td>"
+t+="</tr>"
+
+}
+
+document.getElementById("d").innerHTML=t
+
+})
+
+}
+
+</script>
+
+</body>
+</html>

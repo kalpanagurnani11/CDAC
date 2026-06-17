@@ -1,0 +1,88 @@
+<!-- Explore all Programs from leacutre 
+
+1)  add 4 paragraph in your html page  
+	id should be p1 , p2 , p3 , p4
+
+Display  Color Input and Button on Html Page 
+On Button Click change paragraph font color 
+and font style should be bold  -->
+
+
+<!-- <html>
+<body>
+
+<p id="p1">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+<input type="color" id="c">
+<button onclick="chg()">Change</button>
+
+<script>
+
+function chg(){
+
+let col=document.getElementById("c").value;
+
+document.getElementById("p1").style.color=col;
+document.getElementById("p1").style.fontWeight="bold";
+
+document.getElementById("p2").style.color=col;
+document.getElementById("p2").style.fontWeight="bold";
+
+document.getElementById("p3").style.color=col;
+document.getElementById("p3").style.fontWeight="bold";
+
+document.getElementById("p4").style.color=col;
+document.getElementById("p4").style.fontWeight="bold";
+
+}
+
+</script>
+
+</body>
+</html> -->
+
+<html>
+<body>
+
+<p id="p1">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p2">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p3">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+<p id="p4">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+<input type="color" id="c1">
+<input type="color" id="c2">
+<input type="color" id="c3">
+<input type="color" id="c4">
+
+<button onclick="chg()">Change</button>
+
+<script>
+
+function chg(){
+
+let c1=document.getElementById("c1").value;
+let c2=document.getElementById("c2").value;
+let c3=document.getElementById("c3").value;
+let c4=document.getElementById("c4").value;
+
+document.getElementById("p1").style.color=c1;
+document.getElementById("p1").style.fontWeight="bold";
+
+document.getElementById("p2").style.color=c2;
+document.getElementById("p2").style.fontWeight="bold";
+
+document.getElementById("p3").style.color=c3;
+document.getElementById("p3").style.fontWeight="bold";
+
+document.getElementById("p4").style.color=c4;
+document.getElementById("p4").style.fontWeight="bold";
+
+}
+
+</script>
+
+</body>
+</html>

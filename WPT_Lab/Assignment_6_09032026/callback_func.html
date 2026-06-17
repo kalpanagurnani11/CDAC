@@ -1,0 +1,37 @@
+<html>
+<body>
+
+<button id="b">Click</button>
+
+<script>
+
+function msg(n){
+alert("Hello "+n)
+}
+
+function test(cb){
+cb("Kalpana")
+}
+
+test(msg)
+
+test(function(n){
+alert("Hi "+n)
+})
+
+test((n)=>{
+alert("Welcome "+n)
+})
+
+setTimeout(function(){
+alert("Timeout")
+},2000)
+
+document.getElementById("b").addEventListener("click",function(){
+alert("Button clicked")
+})
+
+</script>
+
+</body>
+</html>

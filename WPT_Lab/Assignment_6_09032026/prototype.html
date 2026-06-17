@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<script>
+
+function A(n,a){
+this.n=n
+this.a=a
+}
+
+function B(n,p){
+this.n=n
+this.p=p
+}
+
+A.prototype.pr=function(){
+document.write(this.n+" "+this.a+"<br>")
+}
+
+B.prototype.pr=function(){
+document.write(this.n+" "+this.p+"<br>")
+}
+
+let x=new A("ram",20)
+let y=new B("hp",60000)
+
+x.pr()
+y.pr()
+
+</script>
+
+</body>
+</html>
