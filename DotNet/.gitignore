@@ -1,0 +1,8 @@
+JAVA_lab/SelfLearning/.metadata/
+.metadata/
+*.log
+.settings/
+.project
+.classpath
+*.txt
+JAVA_lab/FileHandling/
