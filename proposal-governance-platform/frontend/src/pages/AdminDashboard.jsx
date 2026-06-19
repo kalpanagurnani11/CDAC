@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { subscribeToDashboardUpdates } from '../services/signalr';
 import EmailMockViewer from '../components/EmailMockViewer';
+import ProjectLifecycle from './ProjectLifecycle';
 
 // ── Typewriter hook ──────────────────────────────────────────────────────────
 function useTypewriter(text, speed = 18, active = true) {
@@ -67,6 +68,7 @@ export default function AdminDashboard() {
   const [aiReport, setAiReport] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
   const [capitalSummary, setCapitalSummary] = useState(null);
+  const [lifecycleProp, setLifecycleProp] = useState(null); // for ProjectLifecycle view
 
   // Tab state within Admin: 'proposals' or 'emails'
   const [adminTab, setAdminTab] = useState('proposals');
@@ -206,9 +208,26 @@ export default function AdminDashboard() {
       case 'Approved': return 'badge-approved';
       case 'Rejected': return 'badge-rejected';
       case 'FundAllocated': return 'badge-fundallocated';
+      case 'Active': return 'badge-approved';
+      case 'Completed': return 'badge-approved';
+      case 'Terminated': return 'badge-rejected';
       default: return '';
     }
   };
+
+  const LIFECYCLE_STATUSES = ['FundAllocated', 'Active', 'Completed', 'Terminated'];
+
+  // Show lifecycle page if selected
+  if (lifecycleProp) {
+    return (
+      <ProjectLifecycle
+        proposalId={lifecycleProp.id}
+        proposalTitle={lifecycleProp.title}
+        proposalStatus={lifecycleProp.status}
+        onBack={() => setLifecycleProp(null)}
+      />
+    );
+  }
 
   return (
     <div className="page-container">
@@ -365,6 +384,20 @@ export default function AdminDashboard() {
                   {selectedProposal.status === 'Approved' && (
                     <button className="btn btn-success" onClick={handleAllocateFunds}>
                       Allocate Capital & Activate Pool
+                    </button>
+                  )}
+
+                  {/* 4. 🚀 Project Lifecycle Management */}
+                  {LIFECYCLE_STATUSES.includes(selectedProposal.status) && (
+                    <button
+                      className="btn btn-primary"
+                      onClick={() => setLifecycleProp(selectedProposal)}
+                      style={{
+                        background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
+                        border: 'none', justifyContent: 'center'
+                      }}
+                    >
+                      🚀 Manage Project Lifecycle
                     </button>
                   )}
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { api } from '../services/api';
 import { subscribeToDashboardUpdates } from '../services/signalr';
+import ProjectLifecycle from './ProjectLifecycle';
 
 export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
   const [proposals, setProposals] = useState([]);
@@ -9,6 +10,7 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
   const [capitalAllocation, setCapitalAllocation] = useState(null);
   const [transactions, setTransactions] = useState([]);
   const [showAiModal, setShowAiModal] = useState(false);
+  const [lifecycleProp, setLifecycleProp] = useState(null); // for ProjectLifecycle view
   const [aiReport, setAiReport] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
 
@@ -191,9 +193,14 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
       case 'Approved': return 'badge-approved';
       case 'Rejected': return 'badge-rejected';
       case 'FundAllocated': return 'badge-fundallocated';
+      case 'Active': return 'badge-approved';
+      case 'Completed': return 'badge-approved';
+      case 'Terminated': return 'badge-rejected';
       default: return '';
     }
   };
+
+  const LIFECYCLE_STATUSES = ['FundAllocated', 'Active', 'Completed', 'Terminated'];
 
   // Switch to editing state
   const handleEditDraftClick = (proposal) => {
@@ -204,6 +211,18 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
     setUploadedFileName(proposal.supportingDocumentPath ? proposal.supportingDocumentPath.split('/').pop() : '');
     setCurrentTab('edit-proposal');
   };
+
+  // Show lifecycle page if a proposal is selected for lifecycle view
+  if (lifecycleProp) {
+    return (
+      <ProjectLifecycle
+        proposalId={lifecycleProp.id}
+        proposalTitle={lifecycleProp.title}
+        proposalStatus={lifecycleProp.status}
+        onBack={() => setLifecycleProp(null)}
+      />
+    );
+  }
 
   return (
     <div className="page-container">
@@ -371,6 +390,21 @@ export default function SubmitterDashboard({ currentTab, setCurrentTab }) {
                       Submit to Governance
                     </button>
                   </div>
+                )}
+
+                {/* 🚀 Project Lifecycle Button — shown for funded/active/completed proposals */}
+                {LIFECYCLE_STATUSES.includes(selectedProposal.status) && (
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => setLifecycleProp(selectedProposal)}
+                    style={{
+                      width: '100%', justifyContent: 'center', marginTop: '1rem',
+                      background: 'linear-gradient(135deg,#6366f1,#8b5cf6)',
+                      border: 'none', fontSize: '0.88rem'
+                    }}
+                  >
+                    🚀 Open Project Lifecycle (Milestones & Updates)
+                  </button>
                 )}
 
                 {/* AI report trigger button */}

@@ -15,6 +15,10 @@ namespace ProposalGovernance.Api.Data
         public DbSet<CapitalAllocation> CapitalAllocations { get; set; } = null!;
         public DbSet<Transaction> Transactions { get; set; } = null!;
         public DbSet<Notification> Notifications { get; set; } = null!;
+        public DbSet<Investment> Investments { get; set; } = null!;
+        public DbSet<Milestone> Milestones { get; set; } = null!;
+        public DbSet<ProgressUpdate> ProgressUpdates { get; set; } = null!;
+        public DbSet<DividendPayout> DividendPayouts { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -57,6 +61,48 @@ namespace ProposalGovernance.Api.Data
                 .HasForeignKey(n => n.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            modelBuilder.Entity<Milestone>()
+                .HasOne(m => m.Proposal)
+                .WithMany()
+                .HasForeignKey(m => m.ProposalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProgressUpdate>()
+                .HasOne(p => p.Proposal)
+                .WithMany()
+                .HasForeignKey(p => p.ProposalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<ProgressUpdate>()
+                .HasOne(p => p.Author)
+                .WithMany()
+                .HasForeignKey(p => p.AuthorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<DividendPayout>()
+                .HasOne(d => d.Proposal)
+                .WithMany()
+                .HasForeignKey(d => d.ProposalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<DividendPayout>()
+                .HasOne(d => d.Investor)
+                .WithMany()
+                .HasForeignKey(d => d.InvestorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Investment>()
+                .HasOne(i => i.Investor)
+                .WithMany()
+                .HasForeignKey(i => i.InvestorId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Investment>()
+                .HasOne(i => i.Proposal)
+                .WithMany()
+                .HasForeignKey(i => i.ProposalId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // Seed initial data
             string adminHash = BCrypt.Net.BCrypt.HashPassword("admin123");
             string revHash1 = BCrypt.Net.BCrypt.HashPassword("reviewer123");
@@ -82,6 +128,13 @@ namespace ProposalGovernance.Api.Data
                     RequestedAmount = 1200000.00m,
                     Status = ProposalStatuses.Submitted,
                     SubmitterId = 4,
+                    StartupName = "NeuralOps Inc.",
+                    ProblemStatement = "Current infrastructure cannot handle large-scale ML model training.",
+                    ProposedStatement = "Deploy a GPU cluster with 128 A100 cards for distributed training.",
+                    EquityOffered = 10.00m,
+                    TeamDetails = "Alice Cooper (Lead), 3 ML Engineers, 2 DevOps",
+                    Industry = "Technology",
+                    Category = "Infrastructure",
                     CreatedAt = DateTime.UtcNow.AddDays(-10),
                     UpdatedAt = DateTime.UtcNow.AddDays(-10)
                 },
@@ -94,10 +147,18 @@ namespace ProposalGovernance.Api.Data
                     RequestedAmount = 450000.00m,
                     Status = ProposalStatuses.Draft,
                     SubmitterId = 5,
+                    StartupName = "BrandWave Studios",
+                    ProblemStatement = "Brand awareness in APAC and EMEA markets is below 20%.",
+                    ProposedStatement = "Execute a 12-month digital + out-of-home campaign across 8 countries.",
+                    EquityOffered = 5.00m,
+                    TeamDetails = "Bob Martin (Lead), 2 Campaign Managers, 1 Creative Director",
+                    Industry = "Marketing",
+                    Category = "Branding",
                     CreatedAt = DateTime.UtcNow.AddDays(-5),
                     UpdatedAt = DateTime.UtcNow.AddDays(-5)
                 }
             );
+
         }
     }
 }

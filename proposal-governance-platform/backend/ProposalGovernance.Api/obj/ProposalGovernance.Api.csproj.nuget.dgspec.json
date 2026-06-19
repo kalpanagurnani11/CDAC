@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {}
+    "d:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {}
   },
   "projects": {
-    "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {
+    "d:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
+        "projectUniqueName": "d:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
         "projectName": "ProposalGovernance.Api",
-        "projectPath": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
+        "projectPath": "d:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\ProposalGovernance.Api.csproj",
         "packagesPath": "C:\\Users\\asus\\.nuget\\packages\\",
-        "outputPath": "D:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\obj\\",
+        "outputPath": "d:\\CDAC\\proposal-governance-platform\\backend\\ProposalGovernance.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

@@ -37,6 +37,31 @@ namespace ProposalGovernance.Api.Models
         [ForeignKey("SubmitterId")]
         public User? Submitter { get; set; }
 
+        [Required]
+        [MaxLength(100)]
+        public string StartupName { get; set; } = string.Empty;
+
+        [Required]
+        public string ProblemStatement { get; set; } = string.Empty;
+
+        [Required]
+        public string ProposedStatement { get; set; } = string.Empty;
+
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal EquityOffered { get; set; }
+
+        public string? BusinessModel { get; set; }
+
+        public string? Industry { get; set; }
+
+        public string? Category { get; set; }
+
+        [Required]
+        public string TeamDetails { get; set; } = string.Empty;
+
+        public string? DemoVideoUrl { get; set; }
+
         public string SupportingDocumentPath { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
@@ -52,5 +77,8 @@ namespace ProposalGovernance.Api.Models
         public const string Approved = "Approved";
         public const string Rejected = "Rejected";
         public const string FundAllocated = "FundAllocated";
+        public const string Active = "Active";       // Project in progress (milestones running)
+        public const string Completed = "Completed"; // Successfully delivered & closed
+        public const string Terminated = "Terminated"; // Closed early (failed / cancelled)
     }
 }
