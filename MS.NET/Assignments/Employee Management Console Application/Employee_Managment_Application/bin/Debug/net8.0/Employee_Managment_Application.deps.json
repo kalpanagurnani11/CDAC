@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Employee_Managment_Application/1.0.0": {
+        "dependencies": {
+          "Employee": "1.0.0"
+        },
+        "runtime": {
+          "Employee_Managment_Application.dll": {}
+        }
+      },
+      "Employee/1.0.0": {
+        "runtime": {
+          "Employee.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Employee_Managment_Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Employee/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -6,3 +6,7 @@ JAVA_lab/SelfLearning/.metadata/
 .classpath
 *.txt
 JAVA_lab/FileHandling/
+
+# .NET
+**/bin/
+**/obj/
