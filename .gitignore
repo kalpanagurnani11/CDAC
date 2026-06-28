@@ -1,4 +1,5 @@
 JAVA_lab/SelfLearning/.metadata/
+
 .metadata/
 *.log
 .settings/
@@ -10,3 +11,4 @@ JAVA_lab/FileHandling/
 # .NET
 **/bin/
 **/obj/
+.vs/
