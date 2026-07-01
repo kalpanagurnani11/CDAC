@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Quiz Game"
+    "\\Employee Management Console Application",
+    "\\Employee Management Console Application\\Employee_Managment_Application",
+    "\\Employee Management Console Application\\Employee_Managment_Application\\bin",
+    "\\Employee Management Console Application\\Employee_Managment_Application\\obj"
   ],
+  "SelectedNode": "\\Employee Management Console Application\\Employee",
   "PreviewInSolutionExplorer": false
 }

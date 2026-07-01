@@ -1,0 +1,51 @@
+﻿@model IEnumerable<_08_Demo_EF.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h2>Products</h2>
+    <a asp-action="Create">Add Product</a>
+    <table border="1" cellpadding="8px">
+        <tr>
+            <th>Id</th>
+             <th>Name</th>
+             <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Action</th>
+             <th>Id</th>
+
+        </tr>
+        @foreach(var item in Model)
+        {<tr>
+            <td>@item.ProductId</td>  
+            <td>@item.ProductName</td>
+            <td>@item.ProductDescription</td>
+            <td>@item.ProductPrice </td>
+            <td>@item.ProductCategory?.CategoryName</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>|
+               <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>|
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a>|
+
+                
+            </td>
+            </tr>
+            
+        }
+
+
+
+
+
+    </table>
+
+
+
+
+
+
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

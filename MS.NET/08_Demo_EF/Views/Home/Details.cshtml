@@ -1,0 +1,36 @@
+﻿@model _08_Demo_EF.Models.Product
+
+<h2>Product Details</h2>
+
+<table border="1">
+
+    <tr>
+        <td>Product Id</td>
+        <td>@Model.ProductId</td>
+    </tr>
+
+    <tr>
+        <td>Name</td>
+        <td>@Model.ProductName</td>
+    </tr>
+
+    <tr>
+        <td>Description</td>
+        <td>@Model.ProductDescription</td>
+    </tr>
+
+    <tr>
+        <td>Price</td>
+        <td>@Model.ProductPrice</td>
+    </tr>
+
+    <tr>
+        <td>Category</td>
+        <td>@Model.ProductCategory?.CategoryName</td>
+    </tr>
+
+</table>
+
+<br />
+
+<a asp-action="Index">Back</a>

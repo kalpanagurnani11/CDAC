@@ -1,0 +1,48 @@
+﻿@model _06_Demo_ViewBag_Viewdata_TempData.IETDbViewModels.IETDbViewModel;
+
+
+<div class="container text-center table-responsive">
+    <h2>Emp Data: </h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Emp emp in Model.allEmps)
+            {
+                <tr>
+                    <td>@emp.EId</td>
+                    <td>@emp.EName</td>
+                    <td>@emp.Address</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <hr />
+    <h2>Customer Data: </h2>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>CId</th>
+                <th>CName</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Customer cust in Model.allCustomers)
+            {
+                <tr>
+                    <td>@cust.CId</td>
+                    <td>@cust.CName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
