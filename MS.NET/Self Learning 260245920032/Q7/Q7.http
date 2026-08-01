@@ -1,0 +1,6 @@
+@Q7_HostAddress = http://localhost:5139
+
+GET {{Q7_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

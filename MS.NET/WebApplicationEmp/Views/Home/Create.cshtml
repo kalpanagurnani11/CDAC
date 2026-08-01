@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model WebApplicationEmp.Models.Employeeee
+
+
+<form asp-action="Create" method="post">
+    @* <div asp-validation-summary="ModelOnly"> *@
+
+    <label>Name:</label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label>Department</label>
+    <select asp-for="DId" asp-items="ViewBag.Depts">
+
+        <option value="">--Sleceted Dept--</option>
+    </select>
+    <button type="submit">Save</button>
+    </div>
+</form>

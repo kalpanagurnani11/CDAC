@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EMSystem.Models.Emp>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+<h1>Emp Details</h1>
+<a asp-action="Create">Add Employee</a>
+<table border="1" cellpadding="8px">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+            
+        }
+
+</table>
+
+
+
+
+
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>

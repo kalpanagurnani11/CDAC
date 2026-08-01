@@ -1,0 +1,20 @@
+﻿@model EMSystem.Models.Emp
+
+<h2>Employee Details</h2>
+<hr />
+
+<div>
+    <p>
+        <strong>Employee ID:</strong>
+        @Model.Id
+    </p>
+
+    <p>
+        <strong>Name:</strong>
+        @Model.Name
+    </p>
+</div>
+
+<br />
+
+<a asp-action="Index" class="btn btn-primary">Back to List</a>
